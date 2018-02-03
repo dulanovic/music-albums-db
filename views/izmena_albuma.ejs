@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%=album.izvodjac + " - " + album.naslov %></title>
+
+	<meta http-equiv="Content-Language" content="sr" />
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+	<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="/js/audio.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+
+		$("body").css("background-image", "url('/slike/<%=album.izvodjac %>.jpg')");
+		$("body").css("background-size", "100% auto");
+		$("body").css("background-repeat", "no-repeat");
+		$("body").css("background-attachment", "fixed");
+
+		var slikaInput = document.getElementsByTagName("input")[5];
+		slikaInput.onkeyup = function() {
+			var slika = document.getElementById("slika-omot");
+			slika.src = slikaInput.value;
+		}
+
+		$("#brisanje-album").click(function() {
+			if (confirm("Da li ste sigurni da želite da obrišete album?") != true) {
+				return;
+			}
+
+			$.ajax({
+				method: "DELETE",
+				url: "/albumi/<%=album._id %>"
+			}).done(function(data) {
+				alert("Poruka od servera: " + data);
+				window.location.href = "/albumi";
+			});
+		});
+
+		$("#izmena-album").click(function() {
+			var naslov = $("input[name=naslov]").val();
+			var izvodjac = $("input[name=izvodjac]").val();
+			var datum_izdavanja = $("input[name=datum_izdavanja]").val();
+			var zanr = $("input[name=zanr]").val();
+			var trajanje = $("input[name=trajanje]").val();
+			var omot_link = $("input[name=omot_link]").val();
+
+			if (naslov == "" || izvodjac == "" || datum_izdavanja == "" || zanr == "" || trajanje == "" || omot_link == "") {
+				alert("Nije dozvoljeno ostaviti prazno polje u formi, molimo ispravite unos.");
+				return;
+			}
+
+			$.ajax({
+				method: "PUT",
+				url: "/albumi/<%=album._id %>",
+				data: {
+					naslov: naslov,
+					izvodjac: izvodjac,
+					datum_izdavanja: datum_izdavanja,
+					zanr: zanr,
+					trajanje: trajanje,
+					omot_link: omot_link
+				}
+			}).done(function(data) {
+				alert("Poruka od servera: " + data);
+				window.location.href = "/albumi/<%=album._id %>/pregled";
+			});
+		});
+		
+	});
+</script>
+
+</head>
+<body>
+	<div id="sadrzaj">
+		<div id="naslov">
+			<h1><%=album.izvodjac + " - " + album.naslov %></h1>
+		</div>
+		<div id="podaci-album">
+			<div id="omot-album">
+				<img src="<%=album.omot_link %>" id="slika-omot" alt="<%=album.izvodjac + " - " + album.naslov %>" title="<%=album.izvodjac + " - " + album.naslov %>" />
+			</div>
+			<div id="tekst">
+				<p class="kljuc">Naslov:</p>
+				<input type="text" name="naslov" value="<%=album.naslov %>" size="40">
+				<p class="kljuc">Izvođač:</p>
+				<input type="text" name="izvodjac" value="<%=album.izvodjac %>" size="40">
+				<p class="kljuc">Datum izdavanja:</p>
+				<input type="text" name="datum_izdavanja" value="<%=album.datum_izdavanja %>" size="40">
+				<p class="kljuc">Žanr:</p>
+				<input type="text" name="zanr" value="<%=album.zanr %>" size="40">
+				<p class="kljuc">Trajanje:</p>
+				<input type="text" name="trajanje" value="<%=album.trajanje %>" size="10">
+				<p class="kljuc">Omot albuma:</p>
+				<input type="text" name="omot_link" value="<%=album.omot_link %>" size="40"><br>
+				<a href="/<%=album._id %>/unos_pesme"><button class="button button1" style="margin-bottom: 10px;">Dodaj pesmu</button></a>
+				<button class="button button3" id="izmena-album" style="margin-left: 5px;">Izmeni</button>
+				<button class="button button2" id="brisanje-album" style="margin-left: 5px;">Obriši</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

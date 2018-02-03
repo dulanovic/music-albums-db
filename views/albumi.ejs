@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%=naslov %></title>
+
+	<meta http-equiv="Content-Language" content="sr" />
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+	<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("body").css("background-image", "url('/slike/pozadina.png')");
+		$("body").css("background-size", "100% auto");
+		$("body").css("background-repeat", "no-repeat");
+		$("body").css("background-attachment", "fixed");
+	});
+	</script>
+
+</head>
+<body>
+	<div id="sadrzaj">
+		<div id="naslov">
+			<h1 style="border-bottom: none;">ALBUMI</h1>
+		</div><br>
+		<a href="/unos_albuma"><button class="button button1" style="margin-left: 30px; margin-bottom: 10px;">Dodaj album</button></a>
+		<table id="prikaz-albumi" align="center">
+			<% 
+			var brojRedova = Math.ceil((albumi.length) / 4);
+			var brojFilmovaURedu = 0;
+
+			for (var i = 0; i < albumi.length; i++) {
+				if (brojFilmovaURedu % 4 == 0) { %>
+				<tr>
+					<% } %>
+					<td><a href="/albumi/<%=albumi[i]._id %>/pregled" target="_blank"><img src="<%= albumi[i].omot_link %>" /><br><%= albumi[i].naslov %><br><%= albumi[i].izvodjac %></a></td>
+					<% brojFilmovaURedu++;
+					if (brojFilmovaURedu % 4 == 0) { %>
+				</tr>
+				<% brojFilmovaURedu = 0;
+			}
+		}
+
+		var ostatak = 4 - ((albumi.length) % 4);
+		for (var i = 0; i < ostatak; i++) { %>
+		<td></td>
+		<% }
+
+		if (brojFilmovaURedu % 4 != 0) { %>
+	</tr>
+	<% } %>
+</table>
+</div>
+</body>
+</html>

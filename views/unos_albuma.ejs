@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unos albuma</title>
+
+	<meta http-equiv="Content-Language" content="sr" />
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+	<script type="text/javascript" src="/js/validacija.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("body").css("background-image", "url('/slike/pozadina.png')");
+		$("body").css("background-size", "100% auto");
+		$("body").css("background-repeat", "no-repeat");
+		$("body").css("background-attachment", "fixed");
+
+		var slikaInput = document.getElementsByTagName("input")[1];
+		slikaInput.onkeyup = function() {
+			var slika = document.getElementById("slika-omot");
+			slika.src = slikaInput.value;
+		}
+	});
+	</script>
+</head>
+<body>
+	<div id="sadrzaj">
+		<div id="naslov">
+			<h1>Unos albuma</h1>
+		</div>
+		<div id="podaci-album">
+			<div id="omot-album">
+				<img src="/slike/default.png" id="slika-omot" />
+			</div>
+			<div id="tekst">
+				<form id="forma-unos-album" method="POST" action="/albumi" onsubmit="return validacija()">
+					<p class="kljuc">Naslov:</p>
+					<input type="text" name="naslov" value="" size="40" autofocus>
+					<p class="kljuc">Omot albuma:</p>
+					<input type="text" name="omot_link" value="" size="40">
+					<p class="kljuc">Izvođač:</p>
+					<input type="text" name="izvodjac" value="" size="40">
+					<p class="kljuc">Datum izdavanja:</p>
+					<input type="text" name="datum_izdavanja" value="" size="20">
+					<p class="kljuc">Žanr:</p>
+					<input type="text" name="zanr" value="" size="40">
+					<p class="kljuc">Trajanje:</p>
+					<input type="text" name="trajanje" value="" size="10"><br>
+					<input type="submit" class="button button3" value="Dodaj album">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

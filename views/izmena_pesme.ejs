@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%=pesma[0].izvodjac + " - " + pesma[0].pesme[0].naziv %></title>
+
+	<meta http-equiv="Content-Language" content="sr" />
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+	<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="/js/audio.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+
+		$("body").css("background-image", "url('/slike/<%=pesma[0].izvodjac %>.jpg')");
+		$("body").css("background-size", "100% auto");
+		$("body").css("background-repeat", "no-repeat");
+		$("body").css("background-attachment", "fixed");
+
+		$("#brisanje-pesma").click(function() {
+			if (confirm("Da li ste sigurni da želite da obrišete pesmu?") != true) {
+				return;
+			}
+
+			$.ajax({
+				method: "DELETE",
+				url: "/albumi/<%=pesma[0]._id %>/<%=pesma[0].pesme[0].redni_broj %>"
+			}).done(function(data) {
+				alert("Poruka od servera: " + data);
+				window.location.href = "/albumi/<%=pesma[0]._id %>/pregled";
+			});
+		});
+
+		$("#izmena-pesma").click(function() {
+			var naziv = $("input[name=naziv]").val();
+			var trajanje = $("input[name=trajanje]").val();
+			var demo_link = $("input[name=demo_link]").val();
+
+			if (naziv == "" || trajanje == "" || demo_link == "") {
+				alert("Nije dozvoljeno ostaviti prazno polje u formi, molimo ispravite unos.");
+				return;
+			}
+
+			$.ajax({
+				method: "PUT",
+				url: "/albumi/<%=pesma[0]._id %>/<%=pesma[0].pesme[0].redni_broj %>",
+				data: {
+					naziv: naziv,
+					trajanje: trajanje,
+					demo_link: demo_link
+				}
+			}).done(function(data) {
+				alert("Poruka od servera: " + data);
+				window.location.href = "/albumi/<%=pesma[0]._id %>/pregled";
+			});
+		});
+		
+	});
+</script>
+
+</head>
+<body>
+	<div id="sadrzaj">
+		<div id="naslov">
+			<h1><%=pesma[0].izvodjac + " - " + pesma[0].pesme[0].naziv %></h1>
+		</div>
+		<div id="podaci-album">
+			<div id="omot-album">
+				<img src="<%=pesma[0].omot_link %>" id="slika-omot" alt="<%=pesma[0].izvodjac + " - " + pesma[0].naslov %>" title="<%=pesma[0].izvodjac + " - " + pesma[0].naslov %>" />
+			</div>
+			<div id="tekst">
+				<p class="kljuc">Naziv pesme:</p>
+				<input type="text" name="naziv" value="<%=pesma[0].pesme[0].naziv %>" size="40">
+				<p class="kljuc">Trajanje:</p>
+				<input type="text" name="trajanje" value="<%=pesma[0].pesme[0].trajanje %>" size="40">
+				<p class="kljuc">Demo link:</p>
+				<input type="text" name="demo_link" value="<%=pesma[0].pesme[0].demo_link %>" size="40">
+				<p class="kljuc">Album:</p>
+				<p class="vrednost"><%=pesma[0].naslov %></p>
+				<p class="kljuc">Izvođač:</p>
+				<p class="vrednost"><%=pesma[0].izvodjac %></p><br>
+				<button class="button button3" id="izmena-pesma">Izmeni</button>
+				<button class="button button2" id="brisanje-pesma" style="margin-left: 5px;">Obriši</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

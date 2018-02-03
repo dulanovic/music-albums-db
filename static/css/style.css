@@ -1,0 +1,192 @@
+/*TEMPLATE*/
+h1 {
+	border-bottom: 2px solid #FF2828;
+}
+
+#naslov {
+	text-align: center;
+	padding-top: 5px;
+	color: #FFFFFF;
+}
+
+#sadrzaj {
+	display: block;
+	width: 1100px;
+	margin: 0 auto;
+	font-family: Garamond;
+	background-color: #000000;
+}
+
+#sadrzaj a {
+	text-decoration: none;
+}
+
+.button {
+	text-align: center;
+	text-decoration: none;
+	font-size: 18px;
+	font-family: Garamond;
+	-webkit-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+	cursor: pointer;
+}
+
+.button1 {
+	background-color: #FF2828;
+	color: #FFFFFF;
+	border: 2px solid #FF2828;
+}
+
+.button1:hover {
+	background-color: #FFFFFF;
+	color: #FF2828;
+	border: 2px solid #FF2828;
+}
+
+.button2 {
+	background-color: #B30000;
+	color: #FFFFFF;
+	border: 2px solid #B30000;
+}
+
+.button2:hover {
+	background-color: #FFFFFF;
+	color: #B30000;
+	border: 2px solid #B30000;
+}
+
+.button3 {
+	background-color: #008000;
+	color: #FFFFFF;
+	border: 2px solid #008000;
+}
+
+.button3:hover {
+	background-color: #FFFFFF;
+	color: #008000;
+	border: 2px solid #008000;
+}
+
+#sadrzaj td {
+	text-align: center;
+}
+
+
+/*ALBUMI*/
+#prikaz-albumi {
+	border: 2px solid #FF2828;
+	padding: 10px;
+	font-size: 18px;
+}
+
+#prikaz-albumi img {
+	width: 250px;
+	height: 250px;
+}
+
+#prikaz-albumi img:hover {
+	opacity: 0.85;
+}
+
+#prikaz-albumi a {
+	color: #FFFFFF;
+}
+
+#prikaz-albumi a:hover {
+	color: #FF2828;
+}
+
+
+/*ALBUM*/
+#podaci-album {
+	display: inline-block;
+	width: 1100px;
+	margin-top: 20px;
+}
+
+#omot-album {
+	float: left;
+	width: 500px;
+}
+
+#slika-omot {
+	width: 500px;
+	height: auto;
+	margin-left: 80px;
+	padding-right: 0;
+	margin-bottom: 20px;
+}
+
+#tekst {
+	text-align: justify;
+	width: 500px;
+	float: right;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+#tekst input {
+	margin-bottom: 10px;
+}
+
+.kljuc {
+	font-size: 16px;
+	margin-top: 0;
+	margin-bottom: 0;
+	color: #FFFFFF;
+}
+
+.vrednost {
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 0;
+	margin-bottom: 10px;
+	display: inline-block;
+	color: #FF2828;
+}
+
+#album-pesme {
+	margin-top: 20px;
+	font-size: 20px;
+	width: 500px;
+	margin-bottom: 20px;
+}
+
+#album-pesme th {
+	background-color: #FF2828;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+#album-pesme td {
+	color: #FF2828;
+	background-color: #000000;
+}
+
+#album-pesme a {
+	color: #FF2828;
+}
+
+#album-pesme a:hover {
+	color: #FF5050;
+}
+
+#album-pesme .kolona-naziv {
+	text-align: left;
+	padding-left: 5px;
+}
+
+.play-dugme {
+	width: 20px;
+	height: auto;
+}
+
+.play-dugme-veliko {
+	width: 40px;
+	height: auto;
+	display: block;
+}
+
+audio {
+	display: none;
+}

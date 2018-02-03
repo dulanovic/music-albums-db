@@ -1,0 +1,19 @@
+{
+  "name": "epos_seminarski_01",
+  "version": "1.0.0",
+  "description": "Razvoj RESTful-API-ja pomoću Node.js, Express.js i MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "ejs": "^2.5.5",
+    "express": "*",
+    "mongoose": "*",
+    "serve-favicon": "^2.3.2"
+  },
+  "author": "Vidan Dulanović",
+  "license": "ISC"
+}

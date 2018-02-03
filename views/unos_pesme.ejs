@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%=album.izvodjac + " - " + album.naslov %></title>
+
+	<meta http-equiv="Content-Language" content="sr" />
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+	<script type="text/javascript" src="/js/validacija.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("body").css("background-image", "url('/slike/<%=album.izvodjac %>.jpg')");
+		$("body").css("background-size", "100% auto");
+		$("body").css("background-repeat", "no-repeat");
+		$("body").css("background-attachment", "fixed");
+	});
+	</script>
+</head>
+<body>
+	<div id="sadrzaj">
+		<div id="naslov">
+			<h1>Unos pesme</h1>
+		</div>
+		<div id="podaci-album">
+			<div id="omot-album">
+				<img src="<%=album.omot_link %>" id="slika-omot" alt="<%=album.izvodjac + " - " + album.naslov %>" title="<%=album.izvodjac + " - " + album.naslov %>" />
+			</div>
+			<div id="tekst">
+				<form id="forma-unos-pesma" method="POST" action="/albumi/<%=album._id %>" onsubmit="return validacija()">
+					<p class="kljuc">Redni broj:</p>
+					<input type="text" name="redni_broj" value="" size="10" autofocus>
+					<p class="kljuc">Naziv pesme:</p>
+					<input type="text" name="naziv" value="" size="40">
+					<p class="kljuc">Trajanje:</p>
+					<input type="text" name="trajanje" value="" size="40">
+					<p class="kljuc">Demo link:</p>
+					<input type="text" name="demo_link" value="" size="40">
+					<p class="kljuc">Album:</p>
+					<p class="vrednost"><%=album.naslov %></p>
+					<p class="kljuc">Izvođač:</p>
+					<p class="vrednost"><%=album.izvodjac %></p><br>
+					<input type="submit" class="button button3" value="Dodaj pesmu">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

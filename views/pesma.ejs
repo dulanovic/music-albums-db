@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%=pesma[0].izvodjac + " - " + pesma[0].pesme[0].naziv %></title>
+
+	<meta http-equiv="Content-Language" content="sr" />
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+	<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="/js/audio.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("body").css("background-image", "url('/slike/<%=pesma[0].izvodjac %>.jpg')");
+		$("body").css("background-size", "100% auto");
+		$("body").css("background-repeat", "no-repeat");
+		$("body").css("background-attachment", "fixed");
+	});
+	</script>
+
+</head>
+<body>
+	<div id="sadrzaj">
+		<div id="naslov">
+			<h1><%=pesma[0].izvodjac + " - " + pesma[0].pesme[0].naziv %></h1>
+		</div>
+		<a href="/albumi/<%=pesma[0]._id %>/pregled"><button class="button button1" style="margin-left: 80px;">Povratak na album</button></a>
+		<div id="podaci-album">
+			<div id="omot-album">
+				<img src="<%=pesma[0].omot_link %>" id="slika-omot" alt="<%=pesma[0].izvodjac + " - " + pesma[0].naslov %>" title="<%=pesma[0].izvodjac + " - " + pesma[0].naslov %>" />
+			</div>
+			<div id="tekst">
+				<p class="kljuc">Naziv pesme:</p>
+				<p class="vrednost"><%=pesma[0].pesme[0].naziv %></p>
+				<p class="kljuc">Trajanje:</p>
+				<p class="vrednost"><%=pesma[0].pesme[0].trajanje %></p>
+				<p class="kljuc">Album:</p>
+				<p class="vrednost"><%=pesma[0].naslov %></p>
+				<p class="kljuc">Izvođač:</p>
+				<p class="vrednost"><%=pesma[0].izvodjac %></p>
+				<a href="javascript:void(0)" onclick="play('<%=pesma[0].pesme[0].demo_link %>')"><img src="/slike/play.png" class="play-dugme-veliko" id="<%=pesma[00].pesme[0].demo_link %>" /></a><br>
+				<audio id="player"></audio>
+				<a href="/albumi/<%=pesma[0]._id %>/<%=pesma[0].pesme[0].redni_broj %>/izmena"><button class="button button1">Izmeni vrednosti</button></a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

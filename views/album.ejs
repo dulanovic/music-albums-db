@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%=album.izvodjac + " - " + album.naslov %></title>
+
+	<meta http-equiv="Content-Language" content="sr" />
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+	<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="/js/audio.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("body").css("background-image", "url('/slike/<%=album.izvodjac %>.jpg')");
+		$("body").css("background-size", "100% auto");
+		$("body").css("background-repeat", "no-repeat");
+		$("body").css("background-attachment", "fixed");
+	});
+	</script>
+
+</head>
+<body>
+	<div id="sadrzaj">
+		<div id="naslov">
+			<h1><%=album.izvodjac + " - " + album.naslov %></h1>
+		</div>
+		<a href="/albumi"><button class="button button1" style="margin-left: 80px;">Svi albumi</button></a>
+		<div id="podaci-album">
+			<div id="omot-album">
+				<img src="<%=album.omot_link %>" id="slika-omot" alt="<%=album.izvodjac + " - " + album.naslov %>" title="<%=album.izvodjac + " - " + album.naslov %>" />
+			</div>
+			<div id="tekst">
+				<p class="kljuc">Naslov:</p>
+				<p class="vrednost"><%=album.naslov %></p>
+				<p class="kljuc">Izvođač:</p>
+				<p class="vrednost"><%=album.izvodjac %></p>
+				<p class="kljuc">Datum izdavanja:</p>
+				<p class="vrednost"><%=album.datum_izdavanja %></p>
+				<p class="kljuc">Žanr:</p>
+				<p class="vrednost"><%=album.zanr %></p>
+				<p class="kljuc">Trajanje:</p>
+				<p class="vrednost"><%=album.trajanje %></p>
+				<audio id="player"></audio>
+				<table id="album-pesme">
+					<tr>
+						<th>R.br.</th>
+						<th>Demo</th>
+						<th>Naziv</th>
+						<th>Trajanje</th>
+					</tr>
+					<% for (var i = 0; i < album.pesme.length; i++) { %>
+					<tr>
+						<td><%=album.pesme[i].redni_broj %></td>
+						<td><a href="javascript:void(0)" onclick="play('<%=album.pesme[i].demo_link %>')"><img src="/slike/play.png" class="play-dugme" id="<%=album.pesme[i].demo_link %>" /></a></td>
+						<td class="kolona-naziv"><a href="/albumi/<%=album._id %>/<%=album.pesme[i].redni_broj %>/pregled"><%=album.pesme[i].naziv %></a></td>
+						<td><%=album.pesme[i].trajanje %></td>
+					</tr>
+					<% } %>
+				</table>
+				<a href="/albumi/<%=album._id %>/izmena"><button class="button button1" style="margin-bottom: 20px;">Izmeni vrednosti</button></a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
